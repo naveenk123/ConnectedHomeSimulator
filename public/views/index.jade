@@ -1,0 +1,20 @@
+html(ng-app='connectedHome')
+  head
+    title  Alexa
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js")
+    script(src='/javascript/app.js')
+    link(rel='stylesheet' type="text/css" href='/css/styles.css')
+  body(ng-controller= "mainAppCtrl as app")
+    .container.app
+      .col-md-9
+        .form-group
+          label(for='accessTocken') AccessTocken
+          input#accessTocken.form-control(type='text' placeholder='Copy and Paste your alexa accessTocken' ng-model="app.code")
+          br
+          input.btn.btn-default.btn-lg(type='submit', value='Discover Devices' style="padding-top:10px;" ng-click="app.discoverDevices()")
+    discover-devices(bulbs="app.Bulbs" switches="app.Switches" thermostats="app.Thermostats")
+    script(src='/javascript/discover-devices.component.js')
+    script(src='/javascript/switches.component.js')
+    script(src='/javascript/bulbs.component.js')
+    script(src='/javascript/thermostat.component.js')
