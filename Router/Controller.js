@@ -31,21 +31,23 @@ module.exports = {
 
 
     console.log(req.headers['authorization']);
-    // var data = fs.readFileSync("devices.json");
-    // res.send(obj)
+    // res.send(obj);
     // res.end();
-    this.CallerRes = res;
     var tocken = req.headers['authorization']
     var payloadHeaders = { header:  { namespace: 'Alexa.ConnectedHome.Discovery', name: 'DiscoverAppliancesRequest', payloadVersion: '2',
     messageId: myMessageId }, payload: { accessToken: tocken} }
 
-    cohoEndPoint.handler.call(this,payloadHeaders,context.discoveryContext);
+    cohoEndPoint.handler(payloadHeaders,context.discoveryContext);
   },
   'TurnONOFF':function(req,res){
     console.log("---Got the following headers",req.headers);
     var myMessageId =   RequestManager.addSession(res)
-    OnOffHeaders.payload.appliance['additionalApplianceDetails'].deviceType=req.headers['deviceType'];
+    console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+myMessageId+"------------------------");
+    OnOffHeaders.payload.appliance['additionalApplianceDetails'].deviceType=req.headers['devicetype'];
     OnOffHeaders.payload.accessToken= req.headers['authorization'];
+    OnOffHeaders.payload.appliance['applianceId']= req.headers['id'];
+    OnOffHeaders.header.name=req.headers['action'];
+    OnOffHeaders.header.messageId = myMessageId
     cohoEndPoint.handler(OnOffHeaders,context.TurnOnOffContext)
   }
 }

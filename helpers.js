@@ -26,6 +26,9 @@ helpers.discoveryContext = {
     var response = RequestManager.getResponseObjectForSession(messageId);
     response.status(500).end();
       RequestManager.removeRequest(messageId)
+  },
+  'getRemainingTimeInMillis':function(){
+    return 7000;
   }
 };
 helpers.TurnOnOffContext = {
@@ -34,17 +37,20 @@ helpers.TurnOnOffContext = {
       var response = RequestManager.getResponseObjectForSession(messageId);
       response.status(200).end();
         RequestManager.removeRequest(messageId)
-    console.error("********** PASSED  **************");
+    console.log("********** PASSED  **************");
   //  this.self.status(200).end();
   },
   'fail':function(err){
     var messageId = data.header.messageId;
     var response = RequestManager.getResponseObjectForSession(messageId);
-    response.status(500).end();
+      response.status(500).end();
     console.error("********** F A I L **************");
     console.log(data);
     console.error("********** F A I L  END **************");
   //  this.self.status(500).end();
+  },
+  'getRemainingTimeInMillis':function(){
+    return 7000;
   }
 
 }

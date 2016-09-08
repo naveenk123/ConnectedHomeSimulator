@@ -7,7 +7,7 @@ function thermostatController($scope,$http) {
         console.log("--->New thermostats<-------");
         console.log(newvalue);
     });
-    $scope.controll = function(n) {
+    this.controll = function(n) {
         console.log(accesskey);
         console.log("Selected Switch id:" + n);
         var name;
@@ -58,8 +58,9 @@ connectedHome.component('thermostat',{
   </tr>
 </table>
     `,
-  controller:bulbController,
+  controller:thermostatController,
   bindings:{
-    thermostats:'='
+    thermostats:'=',
+    accesscode:'='
   }
 })

@@ -13,7 +13,8 @@ html(ng-app='connectedHome')
           input#accessTocken.form-control(type='text' placeholder='Copy and Paste your alexa accessTocken' ng-model="app.code")
           br
           input.btn.btn-default.btn-lg(type='submit', value='Discover Devices' style="padding-top:10px;" ng-click="app.discoverDevices()")
-    discover-devices(bulbs="app.Bulbs" switches="app.Switches" thermostats="app.Thermostats")
+          p 
+    discover-devices(bulbs="app.Bulbs" switches="app.Switches" thermostats="app.Thermostats" accesscode="access_code")
     script(src='/javascript/discover-devices.component.js')
     script(src='/javascript/switches.component.js')
     script(src='/javascript/bulbs.component.js')

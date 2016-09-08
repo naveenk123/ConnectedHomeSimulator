@@ -1,5 +1,10 @@
 function deviceController($scope){
-  $scope.another="ha"
+  $scope.$watch(angular.bind(this, function() {
+      return this.accessCode;
+  }), function(newvalue, oldvalue) {
+      console.log("--->New Code<-------");
+      console.log(newvalue);
+  });
 
 }
 var connectedHome = angular.module('connectedHome')
@@ -9,12 +14,12 @@ connectedHome.component('discoverDevices',{
 <div class="col-md-4">
 <h1> Switches
 </h1>
-<switches switches="$ctrl.switches"></switches>
+<switche-component switches="$ctrl.switches" accesscode="$ctrl.accesscode"></switche-component>
 </div>
 <div class="col-md-4">
 <h1> Bulbs
 </h1>
-<bulbs Lights="$ctrl.bulbs"></bulbs>
+<bulbs Lights="$ctrl.bulbs" ></bulbs>
 </div>
 <div class="col-md-4">
 <h1> Thermostat
@@ -33,6 +38,7 @@ connectedHome.component('discoverDevices',{
     hero:'=',
     bulbs:'=',
     thermostats:'=',
-    switches:'='
+    switches:'=',
+    accesscode:'='
   }
 })

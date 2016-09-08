@@ -11,8 +11,9 @@ angular.module('connectedHome',[])
   }
 })
 .controller('mainAppCtrl',['$scope','$http',function($scope,$http) {
-  $scope.access_code;
+
   var self = this;
+  self.access_code;
   var switchTypes = [1,3,22,50];
   var bulbTypes = [42,32,4,48];
   /* add dimmer after this*/
@@ -35,10 +36,10 @@ angular.module('connectedHome',[])
         self.code="";
         var str = response.data;
         console.log(str);
+        console.log("Accesscode"+$scope.access_code);
           for(var key in response.data['devices']){
             var obj = response.data.devices[key];
             if(switchTypes.indexOf(obj['additionalApplianceDetails'].deviceType)>=0){
-
               obj.state=false;
               obj.id = i++;
               self.Switches.push(obj);
